@@ -263,12 +263,11 @@
       }
     }
 
-    /* Xấp ảnh lướt lên và fade out liên tục */
+    /* Xấp ảnh Polaroid chuyển động theo tầng (Vertical Infinite Looping Stack) */
     .photo-stack {
       position: absolute;
       inset: 0;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       pointer-events: none;
@@ -280,33 +279,36 @@
 
     .photo-cards {
       position: relative;
-      width: 245px;
-      height: 315px;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    /* 1. Giao diện thẻ ảnh (Polaroid Card) */
     .polaroid {
       position: absolute;
-      width: 245px;
+      width: 215px; /* Rộng khoảng 200px - 220px */
       background: #ffffff;
-      padding: 12px 12px 20px 12px;
-      border-radius: 16px;
-      box-shadow: 0 16px 36px rgba(216, 58, 86, 0.18);
+      padding: 10px 10px 24px 10px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(216, 58, 86, 0.15);
       cursor: pointer;
-      opacity: 0;
-      transform: translateY(75px) scale(0.92) rotate(3deg);
-      pointer-events: none;
-      transition: none;
+      user-select: none;
+      touch-action: manipulation;
+      transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
       will-change: transform, opacity;
+    }
+
+    .polaroid.no-transition {
+      transition: none !important;
     }
 
     .polaroid img {
       width: 100%;
-      height: 250px;
+      aspect-ratio: 1 / 1;
       object-fit: cover;
-      object-position: center 20%;
       border-radius: 10px;
       display: block;
       pointer-events: none;
@@ -315,64 +317,68 @@
     .polaroid .caption {
       text-align: center;
       margin-top: 10px;
-      font-size: 0.95rem;
-      color: var(--primary-color);
+      font-size: 0.85rem;
+      color: #444;
       font-weight: 700;
-      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 4px;
     }
 
-    /* Trạng thái ảnh hiện chính giữa */
-    .polaroid.current {
-      opacity: 1;
-      transform: translateY(0px) scale(1) rotate(0deg);
-      pointer-events: auto;
-      z-index: 10;
-      box-shadow: 0 20px 45px rgba(216, 58, 86, 0.26);
-      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                  opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.3s ease;
-    }
-
-    .polaroid.current:hover {
-      transform: translateY(-4px) scale(1.03) rotate(0deg);
-      box-shadow: 0 24px 50px rgba(216, 58, 86, 0.35);
-    }
-
-    /* Trạng thái lướt lên và fade out */
-    .polaroid.leaving {
+    /* 2. Các nấc chuyển động (States) */
+    /* Nấc 0 (Điểm xuất phát - Ẩn ở dưới) */
+    .polaroid.state-0 {
+      transform: translate(0px, 120px) rotate(8deg) scale(0.8);
       opacity: 0;
-      transform: translateY(-80px) scale(0.9) rotate(-3deg);
+      z-index: 4;
       pointer-events: none;
-      z-index: 9;
-      transition: transform 0.7s cubic-bezier(0.3, 0, 0.7, 0.2),
-                  opacity 0.65s cubic-bezier(0.3, 0, 0.7, 0.2);
     }
 
-    /* Các chấm chỉ số ảnh (Dots) */
-    .photo-dots {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-      margin-top: 10px;
-      z-index: 20;
+    /* Nấc 1 (Tiền cảnh - Rõ nhất, nằm ở chính giữa hơi thấp) */
+    .polaroid.state-1 {
+      transform: translate(-5px, 20px) rotate(-5deg) scale(1);
+      opacity: 1;
+      z-index: 3;
+      pointer-events: auto;
     }
 
-    .photo-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(216, 58, 86, 0.25);
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .polaroid.state-1:hover {
+      transform: translate(-5px, 15px) rotate(-5deg) scale(1.04);
+      box-shadow: 0 16px 35px rgba(216, 58, 86, 0.28);
     }
 
-    .photo-dot.active {
-      width: 24px;
-      height: 8px;
-      border-radius: 10px;
-      background: var(--primary-color);
-      box-shadow: 0 2px 8px rgba(216, 58, 86, 0.35);
+    /* Nấc 2 (Trung cảnh - Bị đẩy lên trên và lệch sang bên khi ảnh mới bay lên) */
+    .polaroid.state-2 {
+      transform: translate(20px, -25px) rotate(6deg) scale(0.92);
+      opacity: 0.65;
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    .polaroid.state-2:hover {
+      transform: translate(20px, -28px) rotate(6deg) scale(0.96);
+      box-shadow: 0 14px 30px rgba(216, 58, 86, 0.22);
+    }
+
+    /* Nấc 3 (Hậu cảnh - Đẩy lên cao hơn nữa, lệch sang trái và mờ dần) */
+    .polaroid.state-3 {
+      transform: translate(-20px, -60px) rotate(-8deg) scale(0.85);
+      opacity: 0.35;
+      z-index: 1;
+      pointer-events: auto;
+    }
+
+    .polaroid.state-3:hover {
+      transform: translate(-20px, -63px) rotate(-8deg) scale(0.89);
+    }
+
+    /* Nấc 4 (Biến mất ở phía trên) */
+    .polaroid.state-4 {
+      transform: translate(0px, -95px) rotate(0deg) scale(0.75);
+      opacity: 0;
+      z-index: 0;
+      pointer-events: none;
     }
 
     /* Nút bấm mở thư (CTA) */
@@ -495,17 +501,17 @@
       transform: translateY(-2px);
     }
 
-    /* Lightbox phóng to ảnh */
+    /* 3. Lightbox Phóng to ảnh (Full-screen Zoom) */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(255, 215, 225, 0.85);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 100;
+      z-index: 1000;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease;
@@ -518,17 +524,21 @@
     }
 
     .lightbox-card {
-      background: #fff;
-      padding: 16px 16px 24px 16px;
-      border-radius: 18px;
-      box-shadow: 0 20px 50px rgba(216, 58, 86, 0.25);
+      background: #ffffff;
+      padding: 16px 16px 22px 16px;
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
       max-width: 90vw;
-      max-height: 82vh;
+      width: auto;
+      height: 75vh;
+      max-height: 75vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
       transform: scale(0.85);
-      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+      position: relative;
     }
 
     .lightbox.open .lightbox-card {
@@ -536,17 +546,54 @@
     }
 
     .lightbox-card img {
+      width: auto;
       max-width: 100%;
-      max-height: 68vh;
+      height: calc(100% - 46px);
+      max-height: calc(75vh - 75px);
       border-radius: 12px;
       object-fit: contain;
+      display: block;
+      background: #fafafa;
     }
 
     .lightbox-caption {
-      margin-top: 12px;
-      font-size: 1rem;
-      font-weight: 600;
+      margin-top: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
       color: var(--primary-color);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      padding: 0 8px;
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #ffffff;
+      color: var(--primary-color);
+      border: 2px solid #ffccd5;
+      font-size: 1.15rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.25s ease;
+      z-index: 10;
+    }
+
+    .lightbox-close-btn:hover {
+      background: var(--primary-color);
+      color: #ffffff;
+      transform: scale(1.1);
     }
 
     /* Modal Tâm Thư */
@@ -1006,9 +1053,10 @@
     </div>
   </footer>
 
-  <!-- Lightbox Phóng to ảnh -->
+  <!-- Lightbox Phóng to ảnh (Full-screen Zoom) -->
   <div id="lightbox" class="lightbox">
-    <div class="lightbox-card">
+    <div class="lightbox-card" id="lightbox-card">
+      <button id="lightbox-close" class="lightbox-close-btn" title="Đóng">✕</button>
       <img id="lightbox-img" src="" alt="Phóng to" />
       <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
@@ -1095,10 +1143,12 @@
     const modalBodyEl = document.getElementById('modal-body');
     const btnCloseEl = document.getElementById('btn-close');
 
-    let currentPhotoIdx = 0;
-    let photoLoopTimer = null;
-    let isPhotoHovered = false;
+    let loopTimer = null;
+    let currentStep = 0;
+    let isStackPaused = false;
     let isLightboxOpen = false;
+    let isPhotoHovered = false;
+    let pendingResetTimeouts = [];
 
     // Khởi tạo nội dung từ CONFIG
     function initTemplate() {
@@ -1113,25 +1163,28 @@
         .map(text => `<p>${text}</p>`)
         .join('');
 
-      // Khởi tạo danh sách ảnh & dots
+      // Khởi tạo danh sách thẻ ảnh Polaroid
       renderPhotoStack();
 
       createParticles();
     }
 
-    // Render cấu trúc xấp ảnh và chấm điều hướng
+    // Render danh sách ảnh Polaroid
     function renderPhotoStack() {
-      photoStackEl.innerHTML = `
-        <div id="photo-cards" class="photo-cards"></div>
-        <div id="photo-dots" class="photo-dots"></div>
-      `;
+      let photosList = [...CONFIG.photos];
+      if (photosList.length < 4) {
+        while (photosList.length < 4) {
+          photosList = photosList.concat(CONFIG.photos);
+        }
+      }
 
+      photoStackEl.innerHTML = '<div id="photo-cards" class="photo-cards"></div>';
       const photoCardsEl = document.getElementById('photo-cards');
-      const photoDotsEl = document.getElementById('photo-dots');
 
-      CONFIG.photos.forEach((photo, index) => {
+      photosList.forEach((photo, index) => {
         const card = document.createElement('div');
-        card.className = 'polaroid';
+        // Ban đầu tất cả thẻ ở Nấc 0 (Điểm xuất phát - Ẩn ở dưới)
+        card.className = 'polaroid state-0';
         card.dataset.index = index;
 
         card.innerHTML = `
@@ -1139,12 +1192,13 @@
           <div class="caption">${photo.caption || ''}</div>
         `;
 
-        // Click vào ảnh để phóng to
-        card.addEventListener('click', () => {
+        // Click để phóng to Full-screen Zoom
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
           openLightbox(photo.url, photo.caption);
         });
 
-        // Tạm dừng loop khi di chuột vào ảnh
+        // Hover tạm dừng để tương tác dễ dàng
         card.addEventListener('mouseenter', () => {
           isPhotoHovered = true;
         });
@@ -1153,63 +1207,93 @@
         });
 
         photoCardsEl.appendChild(card);
-
-        // Tạo dot chỉ số
-        const dot = document.createElement('div');
-        dot.className = 'photo-dot';
-        dot.title = photo.caption || `Ảnh ${index + 1}`;
-        dot.addEventListener('click', () => {
-          showPhotoAt(index);
-          startPhotoLoop();
-        });
-        photoDotsEl.appendChild(dot);
       });
     }
 
-    // Hiển thị ảnh tại vị trí index: ảnh cũ lướt lên và mờ dần, ảnh mới trượt từ dưới lên
-    function showPhotoAt(targetIdx) {
+    // Thiết lập trạng thái nấc cho thẻ
+    function setCardState(card, stateNum) {
+      card.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4');
+      card.classList.add(`state-${stateNum}`);
+    }
+
+    // Silent reset một thẻ về state-0 không có transition
+    function silentResetCardToState0(card) {
+      card.classList.add('no-transition');
+      card.classList.remove('state-0', 'state-1', 'state-2', 'state-3', 'state-4');
+      card.classList.add('state-0');
+      void card.offsetHeight; // Kích hoạt reflow
+      card.classList.remove('no-transition');
+    }
+
+    // Tiến trình dịch chuyển các ảnh lên 1 nấc (Vertical Infinite Looping Stack)
+    function advanceStack() {
       const cards = document.querySelectorAll('.polaroid');
-      const dots = document.querySelectorAll('.photo-dot');
-      if (!cards.length) return;
+      const N = cards.length;
+      if (!N) return;
 
-      const prevIdx = currentPhotoIdx;
-      currentPhotoIdx = (targetIdx + cards.length) % cards.length;
+      const k = currentStep;
 
-      cards.forEach((card, i) => {
-        if (i === currentPhotoIdx) {
-          card.classList.remove('leaving');
-          // Cho vào giữa mượt mà
-          card.classList.add('current');
-        } else if (i === prevIdx && prevIdx !== currentPhotoIdx) {
-          // Ảnh cũ lướt lên trên và mờ dần
-          card.classList.remove('current');
-          card.classList.add('leaving');
-        } else {
-          // Các ảnh khác reset về trạng thái chờ bên dưới
-          card.classList.remove('current', 'leaving');
-        }
-      });
+      // 1. Thẻ tiến vào Nấc 1 (Tiền cảnh - Rõ nhất, nằm ở chính giữa hơi thấp)
+      const idx1 = k % N;
+      setCardState(cards[idx1], 1);
 
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentPhotoIdx);
-      });
-    }
-
-    // Bắt đầu vòng lặp lướt ảnh liên tục
-    function startPhotoLoop() {
-      stopPhotoLoop();
-      photoLoopTimer = setInterval(() => {
-        if (!isPhotoHovered && !isLightboxOpen) {
-          showPhotoAt(currentPhotoIdx + 1);
-        }
-      }, 2600); // 2.6s mỗi ảnh: đủ thời gian ngắm trọn vẹn từng ảnh trước khi lướt lên
-    }
-
-    function stopPhotoLoop() {
-      if (photoLoopTimer) {
-        clearInterval(photoLoopTimer);
-        photoLoopTimer = null;
+      // 2. Thẻ chuyển sang Nấc 2 (Trung cảnh - Bị đẩy lên trên và lệch sang bên)
+      if (k >= 1) {
+        const idx2 = ((k - 1) % N + N) % N;
+        setCardState(cards[idx2], 2);
       }
+
+      // 3. Thẻ chuyển sang Nấc 3 (Hậu cảnh - Đẩy lên cao hơn nữa, lệch sang trái và mờ dần)
+      if (k >= 2) {
+        const idx3 = ((k - 2) % N + N) % N;
+        setCardState(cards[idx3], 3);
+      }
+
+      // 4. Thẻ chuyển sang Nấc 4 (Biến mất ở phía trên)
+      if (k >= 3) {
+        const idx4 = ((k - 3) % N + N) % N;
+        const c4 = cards[idx4];
+        setCardState(c4, 4);
+
+        // Sau khi hoàn tất transition (0.9s = 900ms), âm thầm đưa về Nấc 0 không có transition
+        const tId = setTimeout(() => {
+          if (c4.classList.contains('state-4')) {
+            silentResetCardToState0(c4);
+          }
+        }, 920);
+        pendingResetTimeouts.push(tId);
+      }
+
+      currentStep++;
+    }
+
+    // Vòng lặp cập nhật nấc mỗi 1300ms
+    function startStackLoop() {
+      stopStackLoop();
+      isStackPaused = false;
+      loopTimer = setInterval(() => {
+        if (!isStackPaused && !isLightboxOpen && !isPhotoHovered) {
+          advanceStack();
+        }
+      }, 1300);
+    }
+
+    function pauseStackLoop() {
+      isStackPaused = true;
+    }
+
+    function resumeStackLoop() {
+      isStackPaused = false;
+    }
+
+    function stopStackLoop() {
+      if (loopTimer) {
+        clearInterval(loopTimer);
+        loopTimer = null;
+      }
+      isStackPaused = false;
+      pendingResetTimeouts.forEach(t => clearTimeout(t));
+      pendingResetTimeouts = [];
     }
 
     // Tạo hiệu ứng tim & hoa bay lãng mạn khi chạm vào bó hoa
@@ -1252,12 +1336,13 @@
         heartIconEl.classList.add('show');
       }, 300);
 
-      // Kích hoạt xấp ảnh và bắt đầu hiển thị ảnh đầu tiên lướt lên
+      // Kích hoạt xấp ảnh và bắt đầu hiển thị ảnh đầu tiên bay lên
       photoStackEl.classList.add('active');
-      showPhotoAt(0);
-      startPhotoLoop();
+      currentStep = 0;
+      advanceStack(); // Bước 0: Thẻ đầu tiên bay từ Nấc 0 lên Nấc 1
+      startStackLoop(); // Chu kỳ 1300ms nối tiếp
 
-      // Hiện nút mở thư & ngắm lại sau khi ảnh đầu tiên đã hiện
+      // Hiện nút mở thư & ngắm lại hoa
       setTimeout(() => {
         hintTextEl.classList.add('show');
         btnMessageEl.classList.add('show');
@@ -1268,11 +1353,14 @@
     // Hàm ngắm lại bó hoa hồng (Replay animation nở từng bông)
     function replayBouquet() {
       // Dừng vòng lặp ảnh
-      stopPhotoLoop();
+      stopStackLoop();
 
-      // Reset các tấm ảnh
+      // Reset tất cả các thẻ ảnh về Nấc 0 không có transition
       const cards = document.querySelectorAll('.polaroid');
-      cards.forEach(card => card.classList.remove('current', 'leaving'));
+      cards.forEach(card => {
+        silentResetCardToState0(card);
+      });
+      currentStep = 0;
       photoStackEl.classList.remove('active');
 
       // Ẩn nút & hint
@@ -1288,10 +1376,11 @@
         subTitleEl.style.opacity = 1;
       }, 300);
 
-      // Đóng modal thư nếu mở
+      // Đóng modal & lightbox nếu đang mở
       modalOverlayEl.classList.remove('open');
+      closeLightbox();
 
-      // Hiện lại bó hoa & khởi động lại animation hoa nở
+      // Hiện lại bó hoa & kích hoạt lại animation hoa nở
       bouquetEl.classList.remove('hide');
       const svg = document.getElementById('bouquet-svg');
       if (svg) {
@@ -1307,17 +1396,27 @@
       btnReplayModalEl.addEventListener('click', replayBouquet);
     }
 
-    // Mở & Đóng Lightbox xem ảnh (tạm dừng loop khi đang soi ảnh lớn)
+    // 3. Tương tác Click xem ảnh (Full-screen Zoom)
     function openLightbox(url, caption) {
       isLightboxOpen = true;
       lightboxImgEl.src = url;
       lightboxCaptionEl.textContent = caption || '';
       lightboxEl.classList.add('open');
+      pauseStackLoop(); // Tạm dừng vòng lặp bay khi đang mở Lightbox
     }
 
-    lightboxEl.addEventListener('click', () => {
+    function closeLightbox() {
+      if (!isLightboxOpen) return;
       lightboxEl.classList.remove('open');
       isLightboxOpen = false;
+      resumeStackLoop(); // Cho vòng lặp chạy tiếp khi đóng Lightbox
+    }
+
+    lightboxEl.addEventListener('click', (e) => {
+      // Đóng khi click ra vùng nền hoặc nút đóng
+      if (e.target === lightboxEl || e.target.id === 'lightbox-close') {
+        closeLightbox();
+      }
     });
 
     // Mở & Đóng Modal Tâm thư
@@ -1332,6 +1431,16 @@
     modalOverlayEl.addEventListener('click', (e) => {
       if (e.target === modalOverlayEl) {
         modalOverlayEl.classList.remove('open');
+      }
+    });
+
+    // Hỗ trợ phím ESC đóng lightbox hoặc modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (isLightboxOpen) closeLightbox();
+        else if (modalOverlayEl.classList.contains('open')) {
+          modalOverlayEl.classList.remove('open');
+        }
       }
     });
 

@@ -1,0 +1,50 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - heading "Bó hoa tặng Em iu của Khải nè" [level=1] [ref=f2e3]
+    - paragraph [ref=f2e4]: Chúc mừng ngày 20-10, chúc bé luôn xinh đẹp và rạng rỡ!
+    - generic [ref=f2e66]: ❤️
+  - main [ref=f2e5]:
+    - generic "Chạm vào bó hoa"
+    - generic [ref=f2e67]:
+      - generic [ref=f2e68]:
+        - generic:
+          - img "Lúc chăm chỉ cũng thật đáng yêu ✨"
+          - generic: Lúc chăm chỉ cũng thật đáng yêu ✨
+        - generic [ref=f2e76] [cursor=pointer]:
+          - img "Nụ cười làm tan chảy tim anh 💖"
+          - generic [ref=f2e77]: Nụ cười làm tan chảy tim anh 💖
+        - generic:
+          - img "Nàng thơ dịu dàng của anh 🌸"
+          - generic: Nàng thơ dịu dàng của anh 🌸
+        - generic:
+          - img "Happy Women's Day 🌷"
+          - generic: Happy Women's Day 🌷
+      - generic [ref=f2e71]:
+        - generic "Lúc chăm chỉ cũng thật đáng yêu ✨" [ref=f2e72] [cursor=pointer]
+        - generic "Nụ cười làm tan chảy tim anh 💖" [ref=f2e73] [cursor=pointer]
+        - generic "Nàng thơ dịu dàng của anh 🌸" [ref=f2e74] [cursor=pointer]
+        - generic "Happy Women's Day 🌷" [ref=f2e75] [cursor=pointer]
+  - contentinfo [ref=f2e63]:
+    - generic [ref=f2e64]: Chạm vào từng tấm ảnh để xem rõ hơn nha ✨
+    - generic [ref=f2e65]:
+      - button "✉️ Bé có tin nhắn nò" [ref=f2e78] [cursor=pointer]:
+        - generic [ref=f2e79]: ✉️
+        - generic [ref=f2e80]: Bé có tin nhắn nò
+      - button "🌹 Ngắm lại hoa" [ref=f2e81] [cursor=pointer]:
+        - generic [ref=f2e82]: 🌹
+        - generic [ref=f2e83]: Ngắm lại hoa
+  - generic:
+    - generic:
+      - img "Phóng to"
+  - generic:
+    - generic:
+      - heading "Gửi Em IU 💕" [level=2]
+      - generic:
+        - paragraph: 20/10! Anh hổng biết làm gì khác ngoài tặng em bó hoa này thay cho hoa thiệt
+        - paragraph: Cảm ơn em vì đã đến và ở bên anh
+        - paragraph: Mong rằng mỗi ngày trôi qua, em đều sẽ luôn hạnh phúc ở mãi bên anh
+        - paragraph: Chúc em có một ngày 20/10 thật nhiều niềm vui và thoải mái! 💖
+        - paragraph: Yêu em nhiềuu
+      - generic:
+        - button "🌹 Ngắm lại hoa"
+        - button "Đóng thư"
