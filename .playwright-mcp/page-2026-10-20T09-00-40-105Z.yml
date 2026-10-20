@@ -1,0 +1,44 @@
+- generic [active] [ref=f5e1]:
+  - banner [ref=f5e2]:
+    - heading "Bó hoa tặng Em iu của Khải nè" [level=1] [ref=f5e3]
+    - paragraph [ref=f5e4]: Chúc mừng ngày 20-10, chúc bé luôn xinh đẹp và rạng rỡ!
+    - generic [ref=f5e93]: ❤️
+  - main [ref=f5e5]:
+    - generic "Chạm vào bó hoa"
+    - generic [ref=f5e94]:
+      - generic [ref=f5e95] [cursor=pointer]:
+        - img "Nụ cười tỏa nắng ✨"
+        - generic [ref=f5e96]: Nụ cười tỏa nắng ✨
+      - generic [ref=f5e97] [cursor=pointer]:
+        - img "Luôn rạng rỡ nhé 🌸"
+        - generic [ref=f5e98]: Luôn rạng rỡ nhé 🌸
+      - generic [ref=f5e99] [cursor=pointer]:
+        - img "Xinh đẹp mỗi ngày 💖"
+        - generic [ref=f5e100]: Xinh đẹp mỗi ngày 💖
+      - generic [ref=f5e101] [cursor=pointer]:
+        - img "Happy Women's Day 🌷"
+        - generic [ref=f5e102]: Happy Women's Day 🌷
+  - contentinfo [ref=f5e63]:
+    - generic [ref=f5e64]: Chạm vào từng tấm ảnh để xem rõ hơn nha ✨
+    - generic [ref=f5e65]:
+      - button "✉️ Bé có tin nhắn nò" [ref=f5e103] [cursor=pointer]:
+        - generic [ref=f5e104]: ✉️
+        - generic [ref=f5e105]: Bé có tin nhắn nò
+      - button "🌹 Ngắm lại hoa" [ref=f5e106] [cursor=pointer]:
+        - generic [ref=f5e107]: 🌹
+        - generic [ref=f5e108]: Ngắm lại hoa
+  - generic:
+    - generic:
+      - img "Phóng to"
+  - generic:
+    - generic:
+      - heading "Gửi Em IU 💕" [level=2]
+      - generic:
+        - paragraph: 20/10! Anh hổng biết làm gì khác ngoài tặng em bó hoa này
+        - paragraph: Cảm ơn em vì đã đến và ở bên anh
+        - paragraph: Mong rằng mỗi ngày trôi qua, em đều sẽ luôn hạnh phúc ở mãi bên anh
+        - paragraph: Chúc em có một ngày 20/10 thật nhiều niềm vui và thoải mái! 💖
+        - paragraph: Yêu em nhiềuu
+      - generic:
+        - button "🌹 Ngắm lại hoa"
+        - button "Đóng thư"

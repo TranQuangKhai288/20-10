@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chúc Mừng Ngày 20-10</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #d83a56;
+      --secondary-color: #ff6b81;
+      --bg-gradient: radial-gradient(circle at center, #fff0f3 0%, #ffc2d1 100%);
+      --card-shadow: 0 12px 30px rgba(216, 58, 86, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg-gradient);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px 20px 45px;
+      position: relative;
+    }
+
+    /* Hiệu ứng hạt lấp lánh (Particles) */
+    #particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      background: #ff758f;
+      border-radius: 50%;
+      opacity: 0.45;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(105vh) scale(0.5) rotate(0deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.5;
+      }
+      80% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Phần Tiêu đề (Header) */
+    .header {
+      text-align: center;
+      z-index: 10;
+      transition: all 0.5s ease;
+    }
+
+    .header h1 {
+      color: var(--primary-color);
+      font-size: 2.3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(216, 58, 86, 0.1);
+    }
+
+    .header p {
+      color: var(--primary-color);
+      font-size: 1.05rem;
+      font-weight: 600;
+      opacity: 0.85;
+      min-height: 1.5em;
+      transition: opacity 0.35s ease;
+    }
+
+    .heart-icon {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .heart-icon.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Khu vực trung tâm (Bó hoa & Xấp ảnh) */
+    .stage {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    /* Bó hoa */
+    .bouquet-wrapper {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bouquet-wrapper.hide {
+      opacity: 0;
+      transform: scale(0.4) translateY(50px);
+      pointer-events: none;
+    }
+
+    .bouquet-svg {
+      width: 290px;
+      height: 355px;
+      overflow: visible;
+      filter: drop-shadow(0 14px 25px rgba(216, 58, 86, 0.22));
+      animation: floatBouquet 3.5s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .bouquet-wrapper:hover .bouquet-svg {
+      transform: scale(1.05) translateY(-6px);
+      filter: drop-shadow(0 18px 30px rgba(216, 58, 86, 0.32));
+    }
+
+    .bouquet-shadow {
+      width: 125px;
+      height: 16px;
+      background: radial-gradient(ellipse at center, rgba(216, 58, 86, 0.28) 0%, rgba(216, 58, 86, 0) 75%);
+      border-radius: 50%;
+      margin-top: 8px;
+      animation: shadowScale 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatBouquet {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(0.6deg); }
+    }
+
+    @keyframes shadowScale {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(0.78); opacity: 0.35; }
+    }
+
+    /* Animation giấy gói & lá xanh */
+    .bouquet-wrap {
+      animation: wrapEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transform-origin: 160px 350px;
+    }
+
+    @keyframes wrapEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(35px) scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .leaf-elem, .baby-elem {
+      animation: leavesEntrance 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transform-origin: 160px 220px;
+      opacity: 0;
+    }
+
+    @keyframes leavesEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0.2) rotate(-15deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* Animation nở từng bông hoa hồng (Bloom One By One) */
+    .rose-bloom {
+      opacity: 0;
+      transform: scale(0);
+      transform-origin: 0px 0px;
+      animation: bloomOneByOne 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes bloomOneByOne {
+      0% {
+        opacity: 0;
+        transform: scale(0) rotate(-40deg);
+      }
+      65% {
+        opacity: 1;
+        transform: scale(1.18) rotate(6deg);
+      }
+      85% {
+        transform: scale(0.96) rotate(-2deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* Hiệu ứng lấp lánh (Sparkles) */
+    .sparkle {
+      animation: sparkleTwinkle 2.4s ease-in-out infinite alternate;
+      transform-origin: 0 0;
+    }
+
+    @keyframes sparkleTwinkle {
+      0%, 20% { opacity: 0; transform: scale(0.2) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1.3) rotate(45deg); filter: drop-shadow(0 0 5px #fff); }
+      80%, 100% { opacity: 0; transform: scale(0.3) rotate(90deg); }
+    }
+
+    /* Hạt pháo hoa/tim bay khi chạm vào bó hoa */
+    .burst-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 150;
+      font-size: 1.25rem;
+      animation: burstFloat 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes burstFloat {
+      0% {
+        transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+        opacity: 1;
+      }
+      80% {
+        opacity: 0.95;
+      }
+      100% {
+        transform: translate(calc(-50% + var(--vx)), calc(-50% + var(--vy))) scale(1.25) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Xấp ảnh lướt lên và fade out liên tục */
+    .photo-stack {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .photo-stack.active {
+      pointer-events: auto;
+    }
+
+    .photo-cards {
+      position: relative;
+      width: 245px;
+      height: 315px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .polaroid {
+      position: absolute;
+      width: 245px;
+      background: #ffffff;
+      padding: 12px 12px 20px 12px;
+      border-radius: 16px;
+      box-shadow: 0 16px 36px rgba(216, 58, 86, 0.18);
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(75px) scale(0.92) rotate(3deg);
+      pointer-events: none;
+      transition: none;
+      will-change: transform, opacity;
+    }
+
+    .polaroid img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 10px;
+      display: block;
+      pointer-events: none;
+    }
+
+    .polaroid .caption {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    /* Trạng thái ảnh hiện chính giữa */
+    .polaroid.current {
+      opacity: 1;
+      transform: translateY(0px) scale(1) rotate(0deg);
+      pointer-events: auto;
+      z-index: 10;
+      box-shadow: 0 20px 45px rgba(216, 58, 86, 0.26);
+      transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.3s ease;
+    }
+
+    .polaroid.current:hover {
+      transform: translateY(-4px) scale(1.03) rotate(0deg);
+      box-shadow: 0 24px 50px rgba(216, 58, 86, 0.35);
+    }
+
+    /* Trạng thái lướt lên và fade out */
+    .polaroid.leaving {
+      opacity: 0;
+      transform: translateY(-80px) scale(0.9) rotate(-3deg);
+      pointer-events: none;
+      z-index: 9;
+      transition: transform 0.7s cubic-bezier(0.3, 0, 0.7, 0.2),
+                  opacity 0.65s cubic-bezier(0.3, 0, 0.7, 0.2);
+    }
+
+    /* Các chấm chỉ số ảnh (Dots) */
+    .photo-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      z-index: 20;
+    }
+
+    .photo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(216, 58, 86, 0.25);
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .photo-dot.active {
+      width: 24px;
+      height: 8px;
+      border-radius: 10px;
+      background: var(--primary-color);
+      box-shadow: 0 2px 8px rgba(216, 58, 86, 0.35);
+    }
+
+    /* Nút bấm mở thư (CTA) */
+    .footer {
+      z-index: 10;
+      min-height: 55px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hint-text {
+      font-size: 0.8rem;
+      color: var(--primary-color);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .hint-text.show {
+      opacity: 0.7;
+    }
+
+    .btn-message {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-color);
+      border: 2px solid #ffccd5;
+      padding: 11px 26px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(216, 58, 86, 0.15);
+      opacity: 0;
+      transform: translateY(25px);
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-message.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .btn-message:hover {
+      background: var(--secondary-color);
+      color: #ffffff;
+      border-color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 129, 0.35);
+    }
+
+    .btn-replay {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--primary-color);
+      border: 2px solid #ffccd5;
+      padding: 11px 22px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 20px rgba(216, 58, 86, 0.12);
+      opacity: 0;
+      transform: translateY(25px);
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .btn-replay.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .btn-replay:hover {
+      background: #ffffff;
+      border-color: var(--secondary-color);
+      color: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(216, 58, 86, 0.22);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-replay-modal {
+      background: #fff0f3;
+      color: var(--primary-color);
+      border: 1.5px solid #ffccd5;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-replay-modal:hover {
+      background: #ffe3e8;
+      transform: translateY(-2px);
+    }
+
+    /* Lightbox phóng to ảnh */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 215, 225, 0.85);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-card {
+      background: #fff;
+      padding: 16px 16px 24px 16px;
+      border-radius: 18px;
+      box-shadow: 0 20px 50px rgba(216, 58, 86, 0.25);
+      max-width: 90vw;
+      max-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.85);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .lightbox.open .lightbox-card {
+      transform: scale(1);
+    }
+
+    .lightbox-card img {
+      max-width: 100%;
+      max-height: 68vh;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      margin-top: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    /* Modal Tâm Thư */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 24px;
+      padding: 32px 28px 26px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      text-align: center;
+    }
+
+    .modal-overlay.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-title {
+      color: var(--primary-color);
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .modal-body {
+      text-align: left;
+      color: #444;
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin-bottom: 24px;
+      max-height: 55vh;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .modal-body p {
+      margin-bottom: 12px;
+    }
+
+    .btn-close {
+      background: var(--secondary-color);
+      color: #ffffff;
+      border: none;
+      padding: 10px 32px;
+      border-radius: 50px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 107, 129, 0.35);
+      transition: background 0.25s ease, transform 0.2s ease;
+    }
+
+    .btn-close:hover {
+      background: var(--primary-color);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hạt lấp lánh bay nền -->
+  <div id="particles"></div>
+
+  <!-- Phần Tiêu Đề -->
+  <header class="header">
+    <h1 id="main-title">Bó hoa tặng Em iu của Khải nè</h1>
+    <p id="sub-title">Chạm nhẹ vào hoa nha!</p>
+    <div id="heart-icon" class="heart-icon">❤️</div>
+  </header>
+
+  <!-- Khu vực Bó Hoa & Ảnh Polaroid -->
+  <!-- Khu vực Bó Hoa & Ảnh Polaroid -->
+  <main class="stage">
+    <!-- Bó hoa hồng nghệ thuật -->
+    <div id="bouquet" class="bouquet-wrapper" title="Chạm vào bó hoa">
+      <svg id="bouquet-svg" class="bouquet-svg" viewBox="0 0 320 390" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- 1. Red Velvet Gradients -->
+          <radialGradient id="redCoreGrad" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#38000a" />
+            <stop offset="40%" stop-color="#6a0014" />
+            <stop offset="75%" stop-color="#990024" />
+            <stop offset="100%" stop-color="#bd0034" />
+          </radialGradient>
+          <linearGradient id="redPetalGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#720017" />
+            <stop offset="45%" stop-color="#a4161a" />
+            <stop offset="85%" stop-color="#e5383b" />
+            <stop offset="100%" stop-color="#ff758f" />
+          </linearGradient>
+          <linearGradient id="redOuterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff4d6d" />
+            <stop offset="30%" stop-color="#ba181b" />
+            <stop offset="75%" stop-color="#660708" />
+            <stop offset="100%" stop-color="#38000a" />
+          </linearGradient>
+
+          <!-- 2. Scarlet / Radiant Red Gradients -->
+          <radialGradient id="scarletCoreGrad" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#4d000f" />
+            <stop offset="45%" stop-color="#800f2f" />
+            <stop offset="80%" stop-color="#c9184a" />
+            <stop offset="100%" stop-color="#ff4d6d" />
+          </radialGradient>
+          <linearGradient id="scarletPetalGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#8a0b25" />
+            <stop offset="40%" stop-color="#d90429" />
+            <stop offset="80%" stop-color="#ef233c" />
+            <stop offset="100%" stop-color="#ff8fa3" />
+          </linearGradient>
+
+          <!-- 3. Soft Romantic Pink Gradients -->
+          <radialGradient id="pinkCoreGrad" cx="50%" cy="45%" r="55%">
+            <stop offset="0%" stop-color="#590d22" />
+            <stop offset="45%" stop-color="#800f2f" />
+            <stop offset="80%" stop-color="#c9184a" />
+            <stop offset="100%" stop-color="#ff758f" />
+          </radialGradient>
+          <linearGradient id="pinkPetalGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#a4133c" />
+            <stop offset="40%" stop-color="#ff4d6d" />
+            <stop offset="80%" stop-color="#ff8fa3" />
+            <stop offset="100%" stop-color="#ffe5ec" />
+          </linearGradient>
+          <linearGradient id="pinkOuterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffccd5" />
+            <stop offset="40%" stop-color="#ff758f" />
+            <stop offset="80%" stop-color="#a4133c" />
+            <stop offset="100%" stop-color="#590d22" />
+          </linearGradient>
+
+          <!-- Foliage Gradients -->
+          <linearGradient id="leafGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#143621" />
+            <stop offset="45%" stop-color="#2d6a4f" />
+            <stop offset="85%" stop-color="#52b788" />
+            <stop offset="100%" stop-color="#74c69d" />
+          </linearGradient>
+
+          <!-- Wrapping Gradients -->
+          <linearGradient id="wrapOuterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffccd5" />
+            <stop offset="35%" stop-color="#ffb3c1" />
+            <stop offset="70%" stop-color="#ff8fa3" />
+            <stop offset="100%" stop-color="#fb6f92" />
+          </linearGradient>
+
+          <linearGradient id="wrapInnerGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="65%" stop-color="#fff0f3" />
+            <stop offset="100%" stop-color="#ffd1dc" />
+          </linearGradient>
+
+          <linearGradient id="wrapBackFold" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffe5ec" />
+            <stop offset="100%" stop-color="#ffb3c1" />
+          </linearGradient>
+
+          <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ff758f" />
+            <stop offset="30%" stop-color="#d90429" />
+            <stop offset="70%" stop-color="#a4161a" />
+            <stop offset="100%" stop-color="#590d22" />
+          </linearGradient>
+
+          <linearGradient id="ribbonShine" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffb3c1" />
+            <stop offset="50%" stop-color="#ef233c" />
+            <stop offset="100%" stop-color="#800f2f" />
+          </linearGradient>
+
+          <!-- TEMPLATE 1: ROSE SHAPE RED (Velvet Crimson) -->
+          <g id="rose-shape-red">
+            <path d="M -16,12 C -26,24 -18,34 -4,26 C -8,18 -10,14 -16,12 Z" fill="#2d6a4f" />
+            <path d="M 16,12 C 26,24 18,34 4,26 C 8,18 10,14 16,12 Z" fill="#2d6a4f" />
+            <circle cx="0" cy="0" r="32" fill="url(#redCoreGrad)" />
+            <path d="M -24,-8 C -36,-30 -8,-36 0,-24 C 8,-36 36,-30 24,-8 C 12,-18 -12,-18 -24,-8 Z" fill="url(#redPetalGrad)" />
+            <path d="M -28,-4 C -42,-18 -22,-32 -6,-20 C -18,-18 -26,-12 -28,-4 Z" fill="url(#redOuterGrad)" />
+            <path d="M 28,-4 C 42,-18 22,-32 6,-20 C 18,-18 26,-12 28,-4 Z" fill="url(#redOuterGrad)" />
+            <path d="M -30,-8 C -44,8 -32,28 -12,32 C -24,18 -29,4 -30,-8 Z" fill="url(#redPetalGrad)" />
+            <path d="M 30,-8 C 44,8 32,28 12,32 C 24,18 29,4 30,-8 Z" fill="url(#redPetalGrad)" />
+            <path d="M -28,0 C -36,20 -16,36 0,37 C 16,36 36,20 28,0 C 18,22 -18,22 -28,0 Z" fill="url(#redOuterGrad)" />
+            <path d="M -22,8 C -14,26 14,26 22,8 C 12,20 -12,20 -22,8 Z" fill="url(#redPetalGrad)" />
+            <path d="M -24,-8 C -32,6 -14,20 0,20 C -10,14 -20,4 -24,-8 Z" fill="url(#redOuterGrad)" />
+            <path d="M 24,-8 C 32,6 14,20 0,20 C 10,14 20,4 24,-8 Z" fill="url(#redPetalGrad)" />
+            <path d="M -16,4 C -8,18 8,18 16,4 C 8,14 -8,14 -16,4 Z" fill="url(#redPetalGrad)" />
+            <path d="M -14,-4 C -18,8 8,14 12,4 C 14,-4 4,-10 -4,-10 C -9,-10 -13,-7 -14,-4 Z" fill="url(#redOuterGrad)" />
+            <path d="M -9,-2 C -11,5 4,8 7,2 C 8,-3 3,-6 -2,-6 C -5,-6 -8,-4 -9,-2 Z" fill="url(#redPetalGrad)" />
+            <path d="M -5,-1 C -6,3 2,5 4,1 C 5,-2 1,-4 -1,-4 Z" fill="#ff758f" />
+            <path d="M -26,1 C -15,19 15,19 26,1" fill="none" stroke="rgba(255, 180, 195, 0.7)" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M -18,8 C -10,21 10,21 18,8" fill="none" stroke="rgba(255, 200, 215, 0.75)" stroke-width="0.9" stroke-linecap="round" />
+            <path d="M -13,-3 C -14,6 6,10 11,3" fill="none" stroke="rgba(255, 215, 225, 0.8)" stroke-width="0.8" stroke-linecap="round" />
+            <circle cx="12" cy="14" r="1.6" fill="#ffffff" opacity="0.9" />
+            <circle cx="13" cy="14.8" r="0.6" fill="#ffffff" opacity="0.95" />
+          </g>
+
+          <!-- TEMPLATE 2: ROSE SHAPE SCARLET (Radiant Red) -->
+          <g id="rose-shape-scarlet">
+            <path d="M -16,12 C -26,24 -18,34 -4,26 C -8,18 -10,14 -16,12 Z" fill="#2d6a4f" />
+            <path d="M 16,12 C 26,24 18,34 4,26 C 8,18 10,14 16,12 Z" fill="#2d6a4f" />
+            <circle cx="0" cy="0" r="32" fill="url(#scarletCoreGrad)" />
+            <path d="M -24,-8 C -36,-30 -8,-36 0,-24 C 8,-36 36,-30 24,-8 C 12,-18 -12,-18 -24,-8 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -28,-4 C -42,-18 -22,-32 -6,-20 C -18,-18 -26,-12 -28,-4 Z" fill="url(#redOuterGrad)" />
+            <path d="M 28,-4 C 42,-18 22,-32 6,-20 C 18,-18 26,-12 28,-4 Z" fill="url(#redOuterGrad)" />
+            <path d="M -30,-8 C -44,8 -32,28 -12,32 C -24,18 -29,4 -30,-8 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M 30,-8 C 44,8 32,28 12,32 C 24,18 29,4 30,-8 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -28,0 C -36,20 -16,36 0,37 C 16,36 36,20 28,0 C 18,22 -18,22 -28,0 Z" fill="url(#redOuterGrad)" />
+            <path d="M -22,8 C -14,26 14,26 22,8 C 12,20 -12,20 -22,8 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -24,-8 C -32,6 -14,20 0,20 C -10,14 -20,4 -24,-8 Z" fill="url(#redOuterGrad)" />
+            <path d="M 24,-8 C 32,6 14,20 0,20 C 10,14 20,4 24,-8 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -16,4 C -8,18 8,18 16,4 C 8,14 -8,14 -16,4 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -14,-4 C -18,8 8,14 12,4 C 14,-4 4,-10 -4,-10 C -9,-10 -13,-7 -14,-4 Z" fill="url(#scarletPetalGrad)" />
+            <path d="M -9,-2 C -11,5 4,8 7,2 C 8,-3 3,-6 -2,-6 C -5,-6 -8,-4 -9,-2 Z" fill="url(#scarletCoreGrad)" />
+            <path d="M -5,-1 C -6,3 2,5 4,1 C 5,-2 1,-4 -1,-4 Z" fill="#ff8fa3" />
+            <path d="M -26,1 C -15,19 15,19 26,1" fill="none" stroke="rgba(255, 210, 225, 0.75)" stroke-width="1.2" stroke-linecap="round" />
+            <path d="M -18,8 C -10,21 10,21 18,8" fill="none" stroke="rgba(255, 225, 235, 0.8)" stroke-width="0.9" stroke-linecap="round" />
+            <path d="M -13,-3 C -14,6 6,10 11,3" fill="none" stroke="rgba(255, 235, 245, 0.85)" stroke-width="0.8" stroke-linecap="round" />
+            <circle cx="-12" cy="14" r="1.6" fill="#ffffff" opacity="0.9" />
+          </g>
+
+          <!-- TEMPLATE 3: ROSE SHAPE PINK (Romantic Blush Pink) -->
+          <g id="rose-shape-pink">
+            <path d="M -16,12 C -26,24 -18,34 -4,26 C -8,18 -10,14 -16,12 Z" fill="#2d6a4f" />
+            <path d="M 16,12 C 26,24 18,34 4,26 C 8,18 10,14 16,12 Z" fill="#2d6a4f" />
+            <circle cx="0" cy="0" r="32" fill="url(#pinkCoreGrad)" />
+            <path d="M -24,-8 C -36,-30 -8,-36 0,-24 C 8,-36 36,-30 24,-8 C 12,-18 -12,-18 -24,-8 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -28,-4 C -42,-18 -22,-32 -6,-20 C -18,-18 -26,-12 -28,-4 Z" fill="url(#pinkOuterGrad)" />
+            <path d="M 28,-4 C 42,-18 22,-32 6,-20 C 18,-18 26,-12 28,-4 Z" fill="url(#pinkOuterGrad)" />
+            <path d="M -30,-8 C -44,8 -32,28 -12,32 C -24,18 -29,4 -30,-8 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M 30,-8 C 44,8 32,28 12,32 C 24,18 29,4 30,-8 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -28,0 C -36,20 -16,36 0,37 C 16,36 36,20 28,0 C 18,22 -18,22 -28,0 Z" fill="url(#pinkOuterGrad)" />
+            <path d="M -22,8 C -14,26 14,26 22,8 C 12,20 -12,20 -22,8 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -24,-8 C -32,6 -14,20 0,20 C -10,14 -20,4 -24,-8 Z" fill="url(#pinkOuterGrad)" />
+            <path d="M 24,-8 C 32,6 14,20 0,20 C 10,14 20,4 24,-8 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -16,4 C -8,18 8,18 16,4 C 8,14 -8,14 -16,4 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -14,-4 C -18,8 8,14 12,4 C 14,-4 4,-10 -4,-10 C -9,-10 -13,-7 -14,-4 Z" fill="url(#pinkPetalGrad)" />
+            <path d="M -9,-2 C -11,5 4,8 7,2 C 8,-3 3,-6 -2,-6 C -5,-6 -8,-4 -9,-2 Z" fill="url(#pinkCoreGrad)" />
+            <path d="M -5,-1 C -6,3 2,5 4,1 C 5,-2 1,-4 -1,-4 Z" fill="#ffe5ec" />
+            <path d="M -26,1 C -15,19 15,19 26,1" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.8" stroke-linecap="round" />
+            <path d="M -18,8 C -10,21 10,21 18,8" fill="none" stroke="#ffffff" stroke-width="0.9" opacity="0.85" stroke-linecap="round" />
+            <path d="M -13,-3 C -14,6 6,10 11,3" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.9" stroke-linecap="round" />
+            <circle cx="11" cy="14" r="1.5" fill="#ffffff" opacity="0.95" />
+          </g>
+
+          <!-- Leaf Template -->
+          <g id="eucalyptus-leaf">
+            <path d="M 0,0 C -15,-12 -25,-35 0,-50 C 25,-35 15,-12 0,0 Z" fill="url(#leafGrad1)" />
+            <path d="M 0,0 L 0,-46" stroke="#95d5b2" stroke-width="1.2" opacity="0.6" stroke-linecap="round" />
+            <path d="M 0,-15 C -6,-22 -12,-20 -15,-25" stroke="#95d5b2" stroke-width="0.8" opacity="0.4" fill="none" />
+            <path d="M 0,-26 C 6,-33 12,-31 15,-36" stroke="#95d5b2" stroke-width="0.8" opacity="0.4" fill="none" />
+          </g>
+
+          <!-- Baby's Breath Branch -->
+          <g id="babys-breath">
+            <path d="M 0,0 Q -10,-25 -20,-45" stroke="#52b788" stroke-width="1.2" fill="none" />
+            <path d="M -8,-20 Q 5,-35 12,-50" stroke="#52b788" stroke-width="1" fill="none" />
+            <path d="M -15,-35 Q -30,-48 -35,-60" stroke="#52b788" stroke-width="0.9" fill="none" />
+            <path d="M -3,-28 Q -10,-42 -8,-55" stroke="#52b788" stroke-width="0.9" fill="none" />
+            <circle cx="-20" cy="-45" r="3.8" fill="#ffffff" filter="drop-shadow(0 1px 1px rgba(0,0,0,0.15))" />
+            <circle cx="-20" cy="-45" r="1.2" fill="#ffeaa7" />
+            <circle cx="12" cy="-50" r="3.4" fill="#ffffff" />
+            <circle cx="12" cy="-50" r="1.1" fill="#ffeaa7" />
+            <circle cx="-35" cy="-60" r="3.5" fill="#ffffff" />
+            <circle cx="-35" cy="-60" r="1" fill="#ffeaa7" />
+            <circle cx="-8" cy="-55" r="3.2" fill="#ffffff" />
+            <circle cx="-8" cy="-55" r="1" fill="#ffeaa7" />
+            <circle cx="0" cy="-38" r="2.8" fill="#fff5f5" />
+            <circle cx="-25" cy="-30" r="2.8" fill="#fff5f5" />
+          </g>
+
+          <!-- Sparkle star -->
+          <g id="sparkle-star">
+            <path d="M 0,-8 Q 0,0 8,0 Q 0,0 0,8 Q 0,0 -8,0 Q 0,0 0,-8 Z" fill="#ffeaa7" />
+            <circle cx="0" cy="0" r="1.5" fill="#ffffff" />
+          </g>
+        </defs>
+
+        <!-- 1. BACK WRAPPING PAPER (Lớp giấy bọc phía sau) -->
+        <g class="bouquet-wrap">
+          <path d="M 80,240 Q 15,150 40,105 Q 95,135 135,180 Z" fill="url(#wrapBackFold)" opacity="0.88" />
+          <path d="M 240,240 Q 305,150 280,105 Q 225,135 185,180 Z" fill="url(#wrapBackFold)" opacity="0.88" />
+          <path d="M 60,185 Q 75,85 160,70 Q 245,85 260,185 Q 200,215 160,215 Q 120,215 60,185 Z" fill="url(#wrapInnerGrad)" opacity="0.95" />
+          <path d="M 65,175 Q 110,80 160,76 Q 210,80 255,175" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="4,6" opacity="0.8" />
+        </g>
+
+        <!-- 2. LÁ XANH & HOA BABY PHÍA SAU HOA HỒNG -->
+        <g id="foliage-back">
+          <use href="#eucalyptus-leaf" x="70" y="150" transform="rotate(-55 70 150) scale(0.95)" class="leaf-elem" style="animation-delay: 0.15s;" />
+          <use href="#eucalyptus-leaf" x="85" y="105" transform="rotate(-35 85 105) scale(0.8)" class="leaf-elem" style="animation-delay: 0.25s;" />
+          <use href="#eucalyptus-leaf" x="140" y="70" transform="rotate(-15 140 70) scale(0.85)" class="leaf-elem" style="animation-delay: 0.3s;" />
+          <use href="#eucalyptus-leaf" x="180" y="70" transform="rotate(18 180 70) scale(0.85)" class="leaf-elem" style="animation-delay: 0.3s;" />
+          <use href="#eucalyptus-leaf" x="235" y="105" transform="rotate(35 235 105) scale(0.8)" class="leaf-elem" style="animation-delay: 0.25s;" />
+          <use href="#eucalyptus-leaf" x="250" y="150" transform="rotate(55 250 150) scale(0.95)" class="leaf-elem" style="animation-delay: 0.15s;" />
+
+          <use href="#babys-breath" x="65" y="165" transform="rotate(-20 65 165) scale(0.9)" class="baby-elem" style="animation-delay: 0.35s;" />
+          <use href="#babys-breath" x="255" y="165" transform="rotate(20 255 165) scale(-0.9, 0.9)" class="baby-elem" style="animation-delay: 0.4s;" />
+          <use href="#babys-breath" x="160" y="80" transform="rotate(5 160 80) scale(0.75)" class="baby-elem" style="animation-delay: 0.45s;" />
+        </g>
+
+        <!-- 3. CÁC BÔNG HOA HỒNG (ANIMATION NỞ TỪNG BÔNG) -->
+        <g id="roses-group">
+          <!-- Bông 1: Dưới cùng bên trái (Velvet Red) -->
+          <g transform="translate(112, 212) rotate(-14)">
+            <g class="rose-bloom" style="animation-delay: 0.5s;">
+              <use href="#rose-shape-red" />
+            </g>
+          </g>
+
+          <!-- Bông 2: Dưới cùng bên phải (Scarlet Red) -->
+          <g transform="translate(208, 212) rotate(14)">
+            <g class="rose-bloom" style="animation-delay: 0.75s;">
+              <use href="#rose-shape-scarlet" />
+            </g>
+          </g>
+
+          <!-- Bông 3: Dưới đáy trung tâm (Hồng phấn e ấp) -->
+          <g transform="translate(160, 224) scale(0.98)">
+            <g class="rose-bloom" style="animation-delay: 1.0s;">
+              <use href="#rose-shape-pink" />
+            </g>
+          </g>
+
+          <!-- Bông 4: Tầng giữa mép trái (Scarlet Red) -->
+          <g transform="translate(80, 162) rotate(-22) scale(0.96)">
+            <g class="rose-bloom" style="animation-delay: 1.25s;">
+              <use href="#rose-shape-scarlet" />
+            </g>
+          </g>
+
+          <!-- Bông 5: Tầng giữa trung tâm (Queen Rose - Đỏ nhung lớn nhất) -->
+          <g transform="translate(160, 158) scale(1.15)">
+            <g class="rose-bloom" style="animation-delay: 1.55s;">
+              <use href="#rose-shape-red" />
+            </g>
+          </g>
+
+          <!-- Bông 6: Tầng giữa mép phải (Hồng phấn) -->
+          <g transform="translate(240, 162) rotate(22) scale(0.96)">
+            <g class="rose-bloom" style="animation-delay: 1.85s;">
+              <use href="#rose-shape-pink" />
+            </g>
+          </g>
+
+          <!-- Bông 7: Tầng trên bên trái (Hồng phấn dịu dàng) -->
+          <g transform="translate(112, 116) rotate(-10) scale(1.02)">
+            <g class="rose-bloom" style="animation-delay: 2.15s;">
+              <use href="#rose-shape-pink" />
+            </g>
+          </g>
+
+          <!-- Bông 8: Tầng trên bên phải (Scarlet Red) -->
+          <g transform="translate(208, 116) rotate(10) scale(1.02)">
+            <g class="rose-bloom" style="animation-delay: 2.45s;">
+              <use href="#rose-shape-scarlet" />
+            </g>
+          </g>
+
+          <!-- Bông 9: Đỉnh vương miện (Velvet Crimson trên cùng) -->
+          <g transform="translate(160, 90) scale(1.08)">
+            <g class="rose-bloom" style="animation-delay: 2.75s;">
+              <use href="#rose-shape-red" />
+            </g>
+          </g>
+        </g>
+
+        <!-- 4. LÁ ĐỆM & HOA BABY PHÍA TRƯỚC XEN KẼ HOA -->
+        <g id="foliage-front">
+          <path d="M 160,195 Q 150,185 140,190" stroke="#40916c" stroke-width="2.5" stroke-linecap="round" fill="none" />
+          <circle cx="138" cy="190" r="3.2" fill="#ffffff" />
+          <circle cx="144" cy="184" r="2.6" fill="#ffffff" />
+          <path d="M 160,195 Q 170,185 180,190" stroke="#40916c" stroke-width="2.5" stroke-linecap="round" fill="none" />
+          <circle cx="182" cy="190" r="3.2" fill="#ffffff" />
+          <circle cx="176" cy="184" r="2.6" fill="#ffffff" />
+          <circle cx="106" cy="245" r="3" fill="#ffffff" />
+          <circle cx="214" cy="245" r="3" fill="#ffffff" />
+          <path d="M 125,236 C 105,248 95,230 105,220 C 118,224 122,230 125,236 Z" fill="#2d6a4f" opacity="0.92" />
+          <path d="M 195,236 C 215,248 225,230 215,220 C 202,224 198,230 195,236 Z" fill="#2d6a4f" opacity="0.92" />
+        </g>
+
+        <!-- 5. FRONT WRAPPING CONE (Thân gói hoa & vạt giấy phía trước) -->
+        <g class="bouquet-wrap">
+          <path d="M 100,230 L 138,355 L 182,355 L 220,230 Q 160,250 100,230 Z" fill="url(#wrapInnerGrad)" opacity="0.95" />
+          <path d="M 72,218 Q 112,250 156,275 L 140,365 Q 116,338 80,265 Q 70,240 72,218 Z" fill="url(#wrapOuterGrad)" />
+          <path d="M 156,275 L 140,365 L 145,365 L 158,277 Z" fill="rgba(164, 22, 26, 0.22)" />
+          <path d="M 248,218 Q 188,255 134,280 L 156,365 Q 192,332 240,265 Q 250,240 248,218 Z" fill="url(#wrapOuterGrad)" />
+          <path d="M 248,218 Q 188,255 134,280" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="2" />
+          <path d="M 72,218 Q 112,250 156,275" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" />
+          <rect x="145" y="300" width="30" height="20" rx="4" fill="#ffffff" opacity="0.92" transform="rotate(-5 160 310)" />
+          <path d="M 160,308 C 158,305 154,305 154,308 C 154,311 160,315 160,315 C 160,315 166,311 166,308 C 166,305 162,305 160,308 Z" fill="#d90429" transform="rotate(-5 160 310)" />
+          <path d="M 136,358 Q 160,368 184,358 Q 172,375 160,375 Q 148,375 136,358 Z" fill="#fb6f92" />
+        </g>
+
+        <!-- 6. RUY BĂNG NƠ LỤA ĐỎ (SATIN RIBBON BOW) -->
+        <g class="bouquet-wrap">
+          <path d="M 122,256 Q 160,266 198,256 Q 196,269 160,279 Q 124,269 122,256 Z" fill="url(#ribbonShine)" />
+          <path d="M 154,270 Q 138,305 128,345 Q 140,322 150,280 Z" fill="url(#ribbonGrad)" />
+          <path d="M 166,270 Q 182,305 192,350 Q 180,322 170,280 Z" fill="url(#ribbonGrad)" />
+          <path d="M 160,266 C 144,250 115,248 122,270 C 130,288 149,277 160,268 Z" fill="url(#ribbonShine)" filter="drop-shadow(0 2px 4px rgba(128,15,47,0.35))" />
+          <path d="M 158,267 C 145,255 125,255 129,270 C 134,281 147,275 158,268 Z" fill="url(#ribbonGrad)" opacity="0.65" />
+          <path d="M 160,266 C 176,250 205,248 198,270 C 190,288 171,277 160,268 Z" fill="url(#ribbonShine)" filter="drop-shadow(0 2px 4px rgba(128,15,47,0.35))" />
+          <path d="M 162,267 C 175,255 195,255 191,270 C 186,281 173,275 162,268 Z" fill="url(#ribbonGrad)" opacity="0.65" />
+          <ellipse cx="160" cy="267" rx="7.5" ry="6.5" fill="url(#ribbonShine)" />
+          <path d="M 156,264 Q 160,270 164,264" stroke="#ffe5ec" stroke-width="1.3" fill="none" opacity="0.85" />
+        </g>
+
+        <!-- 7. SPARKLES & LẤP LÁNH QUANH BÓ HOA -->
+        <g id="sparkles">
+          <use href="#sparkle-star" x="75" y="95" class="sparkle" style="animation-delay: 2.8s;" />
+          <use href="#sparkle-star" x="245" y="85" class="sparkle" style="animation-delay: 3.1s;" />
+          <use href="#sparkle-star" x="160" y="55" class="sparkle" style="animation-delay: 2.9s;" />
+          <use href="#sparkle-star" x="55" y="175" class="sparkle" style="animation-delay: 3.3s;" />
+          <use href="#sparkle-star" x="265" y="185" class="sparkle" style="animation-delay: 3.5s;" />
+          <use href="#sparkle-star" x="160" y="125" class="sparkle" style="animation-delay: 3.2s;" />
+        </g>
+      </svg>
+      <div class="bouquet-shadow"></div>
+    </div>
+
+    <!-- Xấp ảnh sẽ được render tự động từ JS -->
+    <div id="photo-stack" class="photo-stack"></div>
+  </main>
+
+  <!-- Phần Chân Trang (Nút mở thư & ngắm lại) -->
+  <footer class="footer">
+    <span id="hint-text" class="hint-text">Chạm vào từng tấm ảnh để xem rõ hơn nha ✨</span>
+    <div class="footer-actions">
+      <button id="btn-message" class="btn-message">
+        <span>✉️</span>
+        <span id="btn-message-text">Bé có tin nhắn nò</span>
+      </button>
+      <button id="btn-replay" class="btn-replay" title="Ngắm lại bó hoa nở">
+        <span>🌹</span>
+        <span>Ngắm lại hoa</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Lightbox Phóng to ảnh -->
+  <div id="lightbox" class="lightbox">
+    <div class="lightbox-card">
+      <img id="lightbox-img" src="" alt="Phóng to" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Hộp thoại Tâm Thư (Modal) -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-card">
+      <h2 id="modal-title" class="modal-title">Gửi tới em iu 💕</h2>
+      <div id="modal-body" class="modal-body"></div>
+      <div class="modal-buttons">
+        <button id="btn-replay-modal" class="btn-replay-modal">🌹 Ngắm lại hoa</button>
+        <button id="btn-close" class="btn-close">Đóng thư</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================================
+       KHU VỰC CẤU HÌNH DỮ LIỆU (BẠN CHỈ CẦN SỬA NỘI DUNG & THAY ẢNH Ở ĐÂY)
+       ========================================================================= */
+    const CONFIG = {
+      // 1. Tiêu đề chính và phụ
+      mainTitle: "Bó hoa tặng Em iu của Khải nè",
+      initialSubTitle: "Chạm nhẹ vào đây nha!",
+      afterClickSubTitle: "Chúc mừng ngày 20-10, chúc bé luôn xinh đẹp và rạng rỡ!",
+
+      // 2. Đường dẫn ảnh bó hoa (Có thể thay bằng file ảnh .png nền trong suốt của bạn, VD: "./images/hoa.png")
+      bouquetImage: "https://cdn-icons-png.flaticon.com/512/4149/4149881.png",
+
+      // 3. Danh sách ảnh kỷ niệm (Thay link bên dưới bằng đường dẫn ảnh thật của bạn, VD: "./img/anh1.jpg")
+      photos: [
+        {
+          url: "./images/39fc48eb-e150-45e9-9dd0-85d9e02dec94.jpeg",
+          caption: "Lúc chăm chỉ cũng thật đáng yêu ✨"
+        },
+        {
+          url: "./images/a4519c39-e594-4bc2-b79d-db8e324859b4.jpeg",
+          caption: "Nụ cười làm tan chảy tim anh 💖"
+        },
+        {
+          url: "./images/b8bd083d-5b52-4884-98d7-e9d589ca9944.jpeg",
+          caption: "Nàng thơ dịu dàng của anh 🌸"
+        },
+        {
+          url: "./images/c00f96bb-936a-477d-ba4e-42353475dcb6.jpeg",
+          caption: "Happy Women's Day 🌷"
+        }
+      ],
+
+      // 4. Nội dung bức thư & Nút bấm
+      buttonText: "Bé có tin nhắn nò",
+      letterTitle: "Gửi Em IU 💕",
+      letterParagraphs: [
+        "20/10! Anh hổng biết làm gì khác ngoài tặng em bó hoa này thay cho hoa thiệt",
+        "Cảm ơn em vì đã đến và ở bên anh",
+        "Mong rằng mỗi ngày trôi qua, em đều sẽ luôn hạnh phúc ở mãi bên anh",
+        "Chúc em có một ngày 20/10 thật nhiều niềm vui và thoải mái! 💖",
+        "Yêu em nhiềuu"
+      ],
+      closeButtonText: "Đóng thư"
+    };
+
+    /* =========================================================================
+       LOGIC XỬ LÝ HIỆU ỨNG (KHÔNG CẦN CHỈNH SỬA PHẦN NÀY)
+       ========================================================================= */
+    const mainTitleEl = document.getElementById('main-title');
+    const subTitleEl = document.getElementById('sub-title');
+    const heartIconEl = document.getElementById('heart-icon');
+    const bouquetEl = document.getElementById('bouquet');
+    const photoStackEl = document.getElementById('photo-stack');
+    const hintTextEl = document.getElementById('hint-text');
+    const btnMessageEl = document.getElementById('btn-message');
+    const btnMessageTextEl = document.getElementById('btn-message-text');
+    const btnReplayEl = document.getElementById('btn-replay');
+    const btnReplayModalEl = document.getElementById('btn-replay-modal');
+
+    const lightboxEl = document.getElementById('lightbox');
+    const lightboxImgEl = document.getElementById('lightbox-img');
+    const lightboxCaptionEl = document.getElementById('lightbox-caption');
+
+    const modalOverlayEl = document.getElementById('modal-overlay');
+    const modalTitleEl = document.getElementById('modal-title');
+    const modalBodyEl = document.getElementById('modal-body');
+    const btnCloseEl = document.getElementById('btn-close');
+
+    let currentPhotoIdx = 0;
+    let photoLoopTimer = null;
+    let isPhotoHovered = false;
+    let isLightboxOpen = false;
+
+    // Khởi tạo nội dung từ CONFIG
+    function initTemplate() {
+      mainTitleEl.textContent = CONFIG.mainTitle;
+      subTitleEl.textContent = CONFIG.initialSubTitle;
+      btnMessageTextEl.textContent = CONFIG.buttonText;
+      modalTitleEl.textContent = CONFIG.letterTitle;
+      btnCloseEl.textContent = CONFIG.closeButtonText;
+
+      // Render đoạn văn trong thư
+      modalBodyEl.innerHTML = CONFIG.letterParagraphs
+        .map(text => `<p>${text}</p>`)
+        .join('');
+
+      // Khởi tạo danh sách ảnh & dots
+      renderPhotoStack();
+
+      createParticles();
+    }
+
+    // Render cấu trúc xấp ảnh và chấm điều hướng
+    function renderPhotoStack() {
+      photoStackEl.innerHTML = `
+        <div id="photo-cards" class="photo-cards"></div>
+        <div id="photo-dots" class="photo-dots"></div>
+      `;
+
+      const photoCardsEl = document.getElementById('photo-cards');
+      const photoDotsEl = document.getElementById('photo-dots');
+
+      CONFIG.photos.forEach((photo, index) => {
+        const card = document.createElement('div');
+        card.className = 'polaroid';
+        card.dataset.index = index;
+
+        card.innerHTML = `
+          <img src="${photo.url}" alt="${photo.caption || 'Ảnh kỷ niệm'}" />
+          <div class="caption">${photo.caption || ''}</div>
+        `;
+
+        // Click vào ảnh để phóng to
+        card.addEventListener('click', () => {
+          openLightbox(photo.url, photo.caption);
+        });
+
+        // Tạm dừng loop khi di chuột vào ảnh
+        card.addEventListener('mouseenter', () => {
+          isPhotoHovered = true;
+        });
+        card.addEventListener('mouseleave', () => {
+          isPhotoHovered = false;
+        });
+
+        photoCardsEl.appendChild(card);
+
+        // Tạo dot chỉ số
+        const dot = document.createElement('div');
+        dot.className = 'photo-dot';
+        dot.title = photo.caption || `Ảnh ${index + 1}`;
+        dot.addEventListener('click', () => {
+          showPhotoAt(index);
+          startPhotoLoop();
+        });
+        photoDotsEl.appendChild(dot);
+      });
+    }
+
+    // Hiển thị ảnh tại vị trí index: ảnh cũ lướt lên và mờ dần, ảnh mới trượt từ dưới lên
+    function showPhotoAt(targetIdx) {
+      const cards = document.querySelectorAll('.polaroid');
+      const dots = document.querySelectorAll('.photo-dot');
+      if (!cards.length) return;
+
+      const prevIdx = currentPhotoIdx;
+      currentPhotoIdx = (targetIdx + cards.length) % cards.length;
+
+      cards.forEach((card, i) => {
+        if (i === currentPhotoIdx) {
+          card.classList.remove('leaving');
+          // Cho vào giữa mượt mà
+          card.classList.add('current');
+        } else if (i === prevIdx && prevIdx !== currentPhotoIdx) {
+          // Ảnh cũ lướt lên trên và mờ dần
+          card.classList.remove('current');
+          card.classList.add('leaving');
+        } else {
+          // Các ảnh khác reset về trạng thái chờ bên dưới
+          card.classList.remove('current', 'leaving');
+        }
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentPhotoIdx);
+      });
+    }
+
+    // Bắt đầu vòng lặp lướt ảnh liên tục
+    function startPhotoLoop() {
+      stopPhotoLoop();
+      photoLoopTimer = setInterval(() => {
+        if (!isPhotoHovered && !isLightboxOpen) {
+          showPhotoAt(currentPhotoIdx + 1);
+        }
+      }, 2600); // 2.6s mỗi ảnh: đủ thời gian ngắm trọn vẹn từng ảnh trước khi lướt lên
+    }
+
+    function stopPhotoLoop() {
+      if (photoLoopTimer) {
+        clearInterval(photoLoopTimer);
+        photoLoopTimer = null;
+      }
+    }
+
+    // Tạo hiệu ứng tim & hoa bay lãng mạn khi chạm vào bó hoa
+    function createBurstEffect(x, y) {
+      const symbols = ['🌸', '🌹', '💖', '✨', '💕', '🌷'];
+      const count = 18;
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'burst-particle';
+        span.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        span.style.left = `${x}px`;
+        span.style.top = `${y}px`;
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+        const velocity = Math.random() * 85 + 65;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        span.style.setProperty('--vx', `${vx}px`);
+        span.style.setProperty('--vy', `${vy}px`);
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 1200);
+      }
+    }
+
+    // Sự kiện click vào bó hoa
+    bouquetEl.addEventListener('click', (e) => {
+      // Tọa độ bung nở tim/hoa
+      const rect = bouquetEl.getBoundingClientRect();
+      const clickX = e.clientX || (rect.left + rect.width / 2);
+      const clickY = e.clientY || (rect.top + rect.height / 2);
+      createBurstEffect(clickX, clickY);
+
+      // Ẩn bó hoa
+      bouquetEl.classList.add('hide');
+
+      // Đổi phụ đề
+      subTitleEl.style.opacity = 0;
+      setTimeout(() => {
+        subTitleEl.textContent = CONFIG.afterClickSubTitle;
+        subTitleEl.style.opacity = 1;
+        heartIconEl.classList.add('show');
+      }, 300);
+
+      // Kích hoạt xấp ảnh và bắt đầu hiển thị ảnh đầu tiên lướt lên
+      photoStackEl.classList.add('active');
+      showPhotoAt(0);
+      startPhotoLoop();
+
+      // Hiện nút mở thư & ngắm lại sau khi ảnh đầu tiên đã hiện
+      setTimeout(() => {
+        hintTextEl.classList.add('show');
+        btnMessageEl.classList.add('show');
+        if (btnReplayEl) btnReplayEl.classList.add('show');
+      }, 600);
+    });
+
+    // Hàm ngắm lại bó hoa hồng (Replay animation nở từng bông)
+    function replayBouquet() {
+      // Dừng vòng lặp ảnh
+      stopPhotoLoop();
+
+      // Reset các tấm ảnh
+      const cards = document.querySelectorAll('.polaroid');
+      cards.forEach(card => card.classList.remove('current', 'leaving'));
+      photoStackEl.classList.remove('active');
+
+      // Ẩn nút & hint
+      hintTextEl.classList.remove('show');
+      btnMessageEl.classList.remove('show');
+      if (btnReplayEl) btnReplayEl.classList.remove('show');
+      heartIconEl.classList.remove('show');
+
+      // Đổi phụ đề về ban đầu
+      subTitleEl.style.opacity = 0;
+      setTimeout(() => {
+        subTitleEl.textContent = CONFIG.initialSubTitle;
+        subTitleEl.style.opacity = 1;
+      }, 300);
+
+      // Đóng modal thư nếu mở
+      modalOverlayEl.classList.remove('open');
+
+      // Hiện lại bó hoa & khởi động lại animation hoa nở
+      bouquetEl.classList.remove('hide');
+      const svg = document.getElementById('bouquet-svg');
+      if (svg) {
+        const clone = svg.cloneNode(true);
+        svg.parentNode.replaceChild(clone, svg);
+      }
+    }
+
+    if (btnReplayEl) {
+      btnReplayEl.addEventListener('click', replayBouquet);
+    }
+    if (btnReplayModalEl) {
+      btnReplayModalEl.addEventListener('click', replayBouquet);
+    }
+
+    // Mở & Đóng Lightbox xem ảnh (tạm dừng loop khi đang soi ảnh lớn)
+    function openLightbox(url, caption) {
+      isLightboxOpen = true;
+      lightboxImgEl.src = url;
+      lightboxCaptionEl.textContent = caption || '';
+      lightboxEl.classList.add('open');
+    }
+
+    lightboxEl.addEventListener('click', () => {
+      lightboxEl.classList.remove('open');
+      isLightboxOpen = false;
+    });
+
+    // Mở & Đóng Modal Tâm thư
+    btnMessageEl.addEventListener('click', () => {
+      modalOverlayEl.classList.add('open');
+    });
+
+    btnCloseEl.addEventListener('click', () => {
+      modalOverlayEl.classList.remove('open');
+    });
+
+    modalOverlayEl.addEventListener('click', (e) => {
+      if (e.target === modalOverlayEl) {
+        modalOverlayEl.classList.remove('open');
+      }
+    });
+
+    // Tạo hạt lấp lánh nền
+    function createParticles() {
+      const container = document.getElementById('particles');
+      const count = 28;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 6 + 4;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.animationDuration = `${Math.random() * 7 + 6}s`;
+        p.style.animationDelay = `${Math.random() * 5}s`;
+        container.appendChild(p);
+      }
+    }
+
+    initTemplate();
+  </script>
+</body>
+</html>
